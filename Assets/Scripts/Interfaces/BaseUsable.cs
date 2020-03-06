@@ -7,4 +7,5 @@ public interface BaseUsable
     void onPlayerUse();
     void onThrow();
 
+    void onDeEquip();
 }
