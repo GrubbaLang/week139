@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class BaseMovement : MonoBehaviour
 {
     [SerializeField]
@@ -27,7 +29,5 @@ public class BaseMovement : MonoBehaviour
         rb.velocity = inputVector * speed;
         inputVector = Vector2.zero;
     }
-
-
-
+       
 }
