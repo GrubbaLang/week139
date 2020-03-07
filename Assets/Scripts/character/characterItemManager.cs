@@ -112,16 +112,19 @@ public class characterItemManager : MonoBehaviour
         {
             currentItem.onDeEquip(currentItemOldParent);
             currentItemOldParent = null;
+            currentState = 0;
+            currentItem = null;
             if (pickList.Count == 0) return;
         }
         if (pickList.Count != 0)
         {
             var selectedItem = pickList.First.Value.onPickup();
-            pickList.RemoveFirst();
             currentItemOldParent = selectedItem.transform.parent;
             selectedItem.transform.SetParent(weaponPoint, false);
             selectedItem.transform.localPosition = Vector3.zero;
-            onAnyPickup.Raise(selectedItem); 
+            onAnyPickup.Raise(selectedItem);
+            currentItem = selectedItem.GetComponent<DefaultUsable>();
+            currentState = pickerState.holding;
         }
     }
     
@@ -133,6 +136,7 @@ public class characterItemManager : MonoBehaviour
             currentItem.onThrow();
             currentItemOldParent = null;
             onAnyThrow.Raise(currentItem.throwGO);
+            currentState = 0;
         }    
     }
     #endregion

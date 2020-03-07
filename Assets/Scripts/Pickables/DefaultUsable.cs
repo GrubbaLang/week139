@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DefaultUsable : MonoBehaviour, IBaseUsable
 {
     public event Action<GameObject> onThisDeEquip;
@@ -13,7 +14,7 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     public GameObject throwGO;
 
     [SerializeField]
-    Vector2 deEquipVel = Vector2.one;
+    float leaveVel = 1;
     
     [SerializeField]
     Vector2 onThrowVel = Vector2.one*Mathf.Deg2Rad;
@@ -21,9 +22,10 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     public void onDeEquip(Transform oldParent)
     {
         transform.SetParent(oldParent, true);
+        pickableGO.transform.position = this.transform.position;
         pickableGO.SetActive(true);
         gameObject.SetActive(false);
-        pickableGO.GetComponent<Rigidbody2D>().velocity = deEquipVel;
+        pickableGO.GetComponent<Rigidbody2D>().velocity = Vector2.one * leaveVel;
     }
 
     public void onPlayerUse()
