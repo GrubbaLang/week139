@@ -133,7 +133,7 @@ public class characterItemManager : MonoBehaviour
         if (currentState == pickerState.holding)
         {
             currentItem.gameObject.transform.SetParent(currentItemOldParent, true);
-            currentItem.onThrow();
+            currentItem.onThrow(weaponPoint);
             currentItemOldParent = null;
             onAnyThrow.Raise(currentItem.throwGO);
             currentState = 0;

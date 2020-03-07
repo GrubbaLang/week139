@@ -9,6 +9,6 @@ public interface IBaseUsable
     event Action<GameObject> onThisUse;
     event Action<GameObject> onThisThrow;
     void onPlayerUse();
-    void onThrow();
+    void onThrow(Transform launchPoint);
     void onDeEquip(Transform oldParent);
 }

@@ -17,7 +17,7 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     float leaveVel = 1;
     
     [SerializeField]
-    Vector2 onThrowVel = Vector2.one*Mathf.Deg2Rad;
+    Vector2 onThrowVelTorgue = Vector2.one*Mathf.Deg2Rad;
 
     public void onDeEquip(Transform oldParent)
     {
@@ -25,7 +25,13 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
         pickableGO.transform.position = this.transform.position;
         pickableGO.SetActive(true);
         gameObject.SetActive(false);
-        pickableGO.GetComponent<Rigidbody2D>().velocity = Vector2.one * leaveVel;
+        var rb = pickableGO.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.one * leaveVel;
+        rb.angularVelocity = 200;
+        var rot = transform.rotation.eulerAngles;
+        rot.z = 0;
+        transform.rotation = Quaternion.Euler(rot);
+
     }
 
     public void onPlayerUse()
@@ -33,9 +39,11 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
         throw new System.NotImplementedException();
     }
 
-    public void onThrow()
+    public void onThrow(Transform args1)
     {
-        throw new System.NotImplementedException();
+        throwGO.transform.position = args1.position;
+        throwGO.transform.rotation = args1.rotation;
+        
     }
 
     // Start is called before the first frame update
