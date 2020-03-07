@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 339718174}
   - component: {fileID: 1546038574323746574}
   - component: {fileID: 1546038574323746575}
+  - component: {fileID: 8044267807029998913}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -181,6 +182,23 @@ CircleCollider2D:
   m_Offset: {x: 0.53, y: 0.66}
   serializedVersion: 2
   m_Radius: 0.61
+--- !u!114 &8044267807029998913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546038573988443927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d210bbc743aec408e48d3ffdb3cc71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAnyHighLight: {fileID: 11400000, guid: 39e6c136232cb1e47af02ee83bf2ed36, type: 2}
+  onAnyPickup: {fileID: 11400000, guid: 3bd18508783a3504f99077021c4c0687, type: 2}
+  onNoHighLight: {fileID: 11400000, guid: 05b1015e8fb569640a27f4bdea9c9405, type: 2}
+  pickableLayerIndex: 15
+  itemPoint: {fileID: 1997563985}
 --- !u!1 &1546038574781755330
 GameObject:
   m_ObjectHideFlags: 0

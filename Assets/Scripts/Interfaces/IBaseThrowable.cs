@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface BasePickable
+public interface IBaseThrowable
 {
-    void onHighlight();
-    void onPickup();
-
+    public void launchSelf(Vector2 velocity);
 }

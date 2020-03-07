@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 1407721483}
   - component: {fileID: 1407721484}
   - component: {fileID: 1407721485}
+  - component: {fileID: 1407721486}
   m_Layer: 0
   m_Name: PlaceHolderPickableItem
   m_TagString: Untagged
@@ -367,7 +368,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -387,12 +388,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129af735a9129b64e96ef38e380de479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1997563985 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1997563985, guid: 3cb7cca098cb875468822fd0feba1f30,
-    type: 3}
-  m_PrefabInstance: {fileID: 1546038574323746572}
+  usableGO: {fileID: 0}
+--- !u!61 &1407721486
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407721481}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.8799999, y: 2.5649998}
+    newSize: {x: 2.4, y: 2.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8799999, y: 2.5649998}
+  m_EdgeRadius: 0
 --- !u!1 &2027042631
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,26 +567,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
---- !u!1 &1546038574323746573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1546038573988443927, guid: 3cb7cca098cb875468822fd0feba1f30,
-    type: 3}
-  m_PrefabInstance: {fileID: 1546038574323746572}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1546038574323746574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546038574323746573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d210bbc743aec408e48d3ffdb3cc71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onAnyHighLight: {fileID: 11400000, guid: 39e6c136232cb1e47af02ee83bf2ed36, type: 2}
-  onAnyPickup: {fileID: 11400000, guid: 3bd18508783a3504f99077021c4c0687, type: 2}
-  onNoHighLight: {fileID: 11400000, guid: d324f7e4c61415a478545f919817f938, type: 2}
-  pickableLayerIndex: 15
-  itemPoint: {fileID: 1997563985}

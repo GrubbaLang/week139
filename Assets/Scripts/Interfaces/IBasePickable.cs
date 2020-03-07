@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface BaseThrowable
+public interface BasePickable
 {
     void onHighlight();
-    void onPickup();
+    GameObject onPickup();
 
 }

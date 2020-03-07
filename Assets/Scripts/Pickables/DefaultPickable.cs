@@ -1,17 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DefaultPickable : MonoBehaviour, BasePickable
 {
+    public event Action<GameObject> onThisHighLight;
+    public event Action<GameObject> onThisPickup;
+    public GameObject UsableGO { get => usableGO; }
+
+
+
+    [SerializeField]
+    GameObject usableGO;
+
+
     public void onHighlight()
     {
         throw new System.NotImplementedException();
     }
 
-    public void onPickup()
+    public GameObject onPickup()
     {
-        throw new System.NotImplementedException();
+        gameObject.SetActive(false);
+        usableGO.SetActive(true);
+        onThisPickup?.Invoke(usableGO);
+        return usableGO;
     }
 
 
