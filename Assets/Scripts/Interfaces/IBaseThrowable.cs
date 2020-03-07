@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBaseThrowable
 {
-    public void launchSelf(Vector2 velocity);
+    void launchSelf(Vector2 velocity);
 }

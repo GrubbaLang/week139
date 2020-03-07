@@ -10,5 +10,5 @@ public interface IBaseUsable
     event Action<GameObject> onThisThrow;
     void onPlayerUse();
     void onThrow();
-    void onDeEquip();
+    void onDeEquip(Transform oldParent);
 }

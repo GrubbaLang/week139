@@ -9,20 +9,21 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     public event Action<GameObject> onThisUse;
     public event Action<GameObject> onThisThrow;
 
-    [SerializeField]
-    GameObject pickableGO;
-    [SerializeField]
-    GameObject usableGO;
+    public GameObject pickableGO;
+    public GameObject throwGO;
 
     [SerializeField]
     Vector2 deEquipVel = Vector2.one;
     
     [SerializeField]
-    Vector2 onThrowVel = Vector2.one*Mathf.Epsilon;
+    Vector2 onThrowVel = Vector2.one*Mathf.Deg2Rad;
 
-    public void onDeEquip()
+    public void onDeEquip(Transform oldParent)
     {
-        throw new System.NotImplementedException();
+        transform.SetParent(oldParent, true);
+        pickableGO.SetActive(true);
+        gameObject.SetActive(false);
+        pickableGO.GetComponent<Rigidbody2D>().velocity = deEquipVel;
     }
 
     public void onPlayerUse()

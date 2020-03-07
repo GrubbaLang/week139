@@ -21,7 +21,10 @@ public class characterItemManager : MonoBehaviour
     /// </summary>
     public GameEvent onNoHighLight;
 
+    public GameObjectGameEvent onAnyThrow;
 
+    [SerializeField]
+    Transform weaponPoint;
 
     [SerializeField]
     int pickableLayerIndex;
@@ -29,8 +32,8 @@ public class characterItemManager : MonoBehaviour
     Transform itemPoint;
     pickerState currentState = 0;
 
-    private IBaseUsable currentItem;
-    private Transform currentItemParent;
+    private DefaultUsable currentItem;
+    private Transform currentItemOldParent;
     //nearest stack like behaviour with remove functionality
     LinkedList<DefaultPickable> pickList = new LinkedList<DefaultPickable>();
 
@@ -105,12 +108,32 @@ public class characterItemManager : MonoBehaviour
     #region Private Functions
     private void PickupCurrentShown()
     {
-        
+        if(currentState == pickerState.holding)
+        {
+            currentItem.onDeEquip(currentItemOldParent);
+            currentItemOldParent = null;
+            if (pickList.Count == 0) return;
+        }
+        if (pickList.Count != 0)
+        {
+            var selectedItem = pickList.First.Value.onPickup();
+            pickList.RemoveFirst();
+            currentItemOldParent = selectedItem.transform.parent;
+            selectedItem.transform.SetParent(weaponPoint, false);
+            selectedItem.transform.localPosition = Vector3.zero;
+            onAnyPickup.Raise(selectedItem); 
+        }
     }
     
     private void ThrowWeapon()
     {
-        throw new NotImplementedException();
+        if (currentState == pickerState.holding)
+        {
+            currentItem.gameObject.transform.SetParent(currentItemOldParent, true);
+            currentItem.onThrow();
+            currentItemOldParent = null;
+            onAnyThrow.Raise(currentItem.throwGO);
+        }    
     }
     #endregion
 }

@@ -7,12 +7,12 @@ public class DefaultPickable : MonoBehaviour, BasePickable
 {
     public event Action<GameObject> onThisHighLight;
     public event Action<GameObject> onThisPickup;
-    public GameObject UsableGO { get => usableGO; }
+    public GameObject UsableGO { get => usableGO.gameObject; }
 
 
 
     [SerializeField]
-    GameObject usableGO;
+    DefaultUsable usableGO;
 
 
     public void onHighlight()
@@ -23,9 +23,9 @@ public class DefaultPickable : MonoBehaviour, BasePickable
     public GameObject onPickup()
     {
         gameObject.SetActive(false);
-        usableGO.SetActive(true);
-        onThisPickup?.Invoke(usableGO);
-        return usableGO;
+        usableGO.gameObject.SetActive(true);
+        onThisPickup?.Invoke(usableGO.gameObject);
+        return usableGO.gameObject;
     }
 
 
