@@ -16,7 +16,7 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     [SerializeField]
     float leaveVel = 1;
     
-    [SerializeField]
+    [SerializeField, Tooltip("X is throw speed, Y is rotation force")]
     Vector2 onThrowVelTorgue = Vector2.one*Mathf.Deg2Rad;
 
     public void onDeEquip(Transform oldParent)
@@ -43,13 +43,22 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     {
         throwGO.transform.position = args1.position;
         throwGO.transform.rotation = args1.rotation;
-        
+        gameObject.SetActive(false);
+        throwGO.SetActive(true);
+        var rb = throwGO.GetComponent<Rigidbody2D>();
+        rb.angularVelocity = UnityEngine.Random.value * 10 % 2 == 0 ? onThrowVelTorgue.y : -onThrowVelTorgue.y;
+        rb.velocity = args1.right * onThrowVelTorgue.x;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void OnEnable()
+    {
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     // Update is called once per frame

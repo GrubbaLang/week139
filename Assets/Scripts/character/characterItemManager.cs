@@ -125,6 +125,8 @@ public class characterItemManager : MonoBehaviour
             onAnyPickup.Raise(selectedItem);
             currentItem = selectedItem.GetComponent<DefaultUsable>();
             currentState = pickerState.holding;
+            selectedItem.transform.eulerAngles = Vector3.zero;
+
         }
     }
     
