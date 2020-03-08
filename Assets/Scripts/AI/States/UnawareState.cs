@@ -15,8 +15,8 @@ public class UnawareState : BaseAIState
 
     public override void OnStateEnter()
     {
-       // _ai.TraverseToRandomPosition();
-
+        // _ai.TraverseToRandomPosition();
+        _ai.Patrol();
     }
     public override Type Tick()
     {

@@ -15,7 +15,7 @@ public class PatrolState : BaseAIState {
 
     public override void OnStateEnter()
     {
-     
+       
     }
 
     public override Type Tick()

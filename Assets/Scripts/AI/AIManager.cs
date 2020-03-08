@@ -12,6 +12,8 @@ public class AIManager : MonoBehaviour
     public GameObject _Player;
     private AIStateManager _stateManager;
 
+    [SerializeField]List<Transform> _patrolPoints;
+
     [SerializeField] public Vector3 _target;
     public Rigidbody2D _rb;
 
@@ -22,22 +24,14 @@ public class AIManager : MonoBehaviour
     public bool reachedEndOfPath;
     Seeker seeker;
 
-
-
-
     public AISettings _settings;
 
-   
     private void Start()
     {
         SetupStates();
 
         _rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
-        StartCoroutine(WanderAround());
-
-
-
     }
 
     private void SetupStates()
@@ -53,7 +47,6 @@ public class AIManager : MonoBehaviour
         _stateManager.SetStates(_initialStates);
         
     }
-
 
     void Update()
     {
@@ -117,22 +110,43 @@ public class AIManager : MonoBehaviour
             seeker.StartPath(transform.position, dest, OnPathComplete);    
     }
 
-    IEnumerator WanderAround()
-    {
-        while (true)
-        {
-            SetDestination(RandomPosition());
-            yield return new WaitUntil(() => reachedEndOfPath);
-            yield return new WaitForSeconds(2F);
-        }
-    }
-
     public Vector2 RandomPosition()
     {
         return (Vector2)new Vector2(UnityEngine.Random.Range(0.0F, 5.0F),
              UnityEngine.Random.Range(0.0F, 5.0F));
     }
 
+    public void Patrol()
+    {
+        if (_patrolPoints.Count > 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(PatrolWaypoints());
+        }
+    }
+
+    IEnumerator PatrolWaypoints()
+    {
+        int currentWaypoint = 0;
+        while (true)
+        {
+            if(currentWaypoint == _patrolPoints.Count)
+            {
+                currentWaypoint = 0;
+            }
+
+            SetDestination(_patrolPoints[currentWaypoint].position);
+            yield return new WaitUntil(() => reachedEndOfPath);
+            yield return new WaitForSeconds(2F);
+
+            currentWaypoint++;
+        }
+    }
+
+    IEnumerator LookForPlayer()
+    {
+        return null;
+    }
 }
     
 
