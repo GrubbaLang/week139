@@ -14,16 +14,12 @@ public class AIManager : MonoBehaviour
 
     [SerializeField] public Vector3 _target;
     public Rigidbody2D _rb;
-    AIDestinationSetter _setter;
-    AIPath _agent;
-    AILerp lerp;
 
     public Path path;
     public float speed = 2;
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
-    bool traversing;
     Seeker seeker;
 
 
@@ -37,10 +33,9 @@ public class AIManager : MonoBehaviour
         SetupStates();
 
         _rb = GetComponent<Rigidbody2D>();
-        _setter = GetComponent<AIDestinationSetter>();
-        _agent = GetComponent<AIPath>();
         seeker = GetComponent<Seeker>();
-        lerp = GetComponent<AILerp>();
+        StartCoroutine(WanderAround());
+
 
 
     }
@@ -51,7 +46,9 @@ public class AIManager : MonoBehaviour
         _stateManager = GetComponent<AIStateManager>();
         _initialStates = new Dictionary<Type, BaseAIState>
         {
-            {typeof(WanderState), new WanderState(this)}
+            {typeof(UnawareState), new UnawareState(this)},
+            {typeof(AwareState), new AwareState(this)},
+            {typeof(PatrolState), new PatrolState(this)},
         };
         _stateManager.SetStates(_initialStates);
         
@@ -102,19 +99,6 @@ public class AIManager : MonoBehaviour
         this._target = _Player.transform.position;
     }
 
-    public void TraverseToRandomPosition()
-    {
-        if (path == null)
-        {
-            
-
-    
-            seeker.StartPath((Vector2)transform.position, new Vector2(UnityEngine.Random.Range(0.0F, 5.0F),
-                 UnityEngine.Random.Range(0.0F, 5.0F)), OnPathComplete);
-           
-        }
-    }
-
     public void OnPathComplete(Path p)
     {
         Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
@@ -125,7 +109,30 @@ public class AIManager : MonoBehaviour
             // Reset the waypoint counter so that we start to move towards the first point in the path
             currentWaypoint = 0;
         }
+
     }
+
+    public void SetDestination(Vector2 dest)
+    {
+            seeker.StartPath(transform.position, dest, OnPathComplete);    
+    }
+
+    IEnumerator WanderAround()
+    {
+        while (true)
+        {
+            SetDestination(RandomPosition());
+            yield return new WaitUntil(() => reachedEndOfPath);
+            yield return new WaitForSeconds(2F);
+        }
+    }
+
+    public Vector2 RandomPosition()
+    {
+        return (Vector2)new Vector2(UnityEngine.Random.Range(0.0F, 5.0F),
+             UnityEngine.Random.Range(0.0F, 5.0F));
+    }
+
 }
     
 
