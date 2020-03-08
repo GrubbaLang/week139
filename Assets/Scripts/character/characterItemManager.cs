@@ -154,7 +154,8 @@ public class characterItemManager : MonoBehaviour
 
     private void UseCurrentItem()
     {
-        ;
+        onAnyUse.Raise(currentItem.gameObject);
+        currentItem.onPlayerUse();
     }
 
     #endregion

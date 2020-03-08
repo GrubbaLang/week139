@@ -49,14 +49,17 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 
     void OnCollisionEnter2D(Collision2D otherCol)
     {
-        if(otherCol.gameObject.layer == enemyLayerIndx && firstCol)
+        if (this.enabled)
         {
-            
-            //Hitting enemy with throwable code here
-        }
-        firstCol = false;
-        
+            if (otherCol.gameObject.layer == enemyLayerIndx && firstCol)
+            {
 
-        back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.1f));
+                //Hitting enemy with throwable code here
+            }
+            firstCol = false;
+
+
+            back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.1f)); 
+        }
     }
 }
