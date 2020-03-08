@@ -7,6 +7,7 @@ public class AISettings
 {
     [Header("Movement")]
     [SerializeField] public float _movementSpeed = 3F;
+    [SerializeField] public float _Pointradius = 2F;
 
     
     
