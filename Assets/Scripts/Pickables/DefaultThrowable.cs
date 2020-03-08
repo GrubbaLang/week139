@@ -10,6 +10,8 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 
     private Coroutine back2pickCor;
     private Rigidbody2D rb;
+    private bool firstCol = false;
+    private throwableStateTracker stateTracker;
 
     public void launchSelf(Vector2 velocity)
     {
@@ -19,6 +21,7 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
     // Start is called before the first frame update
     void OnEnable()
     {
+        firstCol = true;
         if (back2pickCor != null)
             StopCoroutine(back2pickCor);
         back2pickCor = StartCoroutine(turnSelfIntoPickabble(timeToBackToPickable));
@@ -26,21 +29,16 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        Debug.Log(string.Format("Item {0} started checking for enemies in layer {1}", gameObject.name ,LayerMask.LayerToName(enemyLayerIndx)));
+        stateTracker = GetComponent<throwableStateTracker>();
+        this.enabled = false;
+        Debug.Log(string.Format("Throwable {0} started checking for enemies in layer {1}", gameObject.name ,LayerMask.LayerToName(enemyLayerIndx)));
     }
 
 
     void backToPick()
     {
-        pickableGO.SetActive(true);
-        pickableGO.transform.position = transform.position;
-        pickableGO.transform.rotation = transform.rotation;
-        var otherrb = pickableGO.GetComponent<Rigidbody2D>();
-        otherrb.velocity = rb.velocity;
-        otherrb.angularVelocity = rb.angularVelocity;
+        stateTracker.goToPickable();
         Debug.LogFormat("{0} turned back to pickable", gameObject.name);
-        gameObject.SetActive(false);
     }
 
     IEnumerator turnSelfIntoPickabble(float time)
@@ -51,12 +49,14 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 
     void OnCollisionEnter2D(Collision2D otherCol)
     {
-        if(otherCol.gameObject.layer == enemyLayerIndx)
+        if(otherCol.gameObject.layer == enemyLayerIndx && firstCol)
         {
             
             //Hitting enemy with throwable code here
         }
+        firstCol = false;
         StopCoroutine(back2pickCor);
+
         back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.3f));
     }
 }

@@ -48,6 +48,8 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
         var rb = throwGO.GetComponent<Rigidbody2D>();
         rb.angularVelocity = UnityEngine.Random.value * 10 % 2 == 0 ? onThrowVelTorgue.y : -onThrowVelTorgue.y;
         rb.velocity = args1.right * onThrowVelTorgue.x;
+        throwGO.GetComponent<throwableStateTracker>().goToThrowable();
+
     }
 
     // Start is called before the first frame update
