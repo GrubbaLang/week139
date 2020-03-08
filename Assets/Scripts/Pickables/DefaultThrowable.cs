@@ -55,8 +55,8 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
             //Hitting enemy with throwable code here
         }
         firstCol = false;
-        StopCoroutine(back2pickCor);
+        
 
-        back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.3f));
+        back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.1f));
     }
 }
