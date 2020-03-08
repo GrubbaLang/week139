@@ -6,15 +6,24 @@ public class MeeleeHitter : MonoBehaviour
 {
     public LayerMask enemies;
     public Transform originPoint;
-    // Start is called before the first frame update
-    void Start()
+
+    public Vector2 attackBounds;
+    public CapsuleDirection2D capsDirection;
+
+
+    /// <summary>
+    /// Use only if you've already set up attack point if not use attack(transform)
+    /// </summary>
+    public void Attack()
     {
-        
+        //remember world space so have to also use transform.rot.euler.z
+        //Physics2D.OverlapCapsule();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Attack(Transform origin)
     {
-        
+        originPoint = origin;
+        Attack();
     }
+
 }

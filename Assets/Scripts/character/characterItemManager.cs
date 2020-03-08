@@ -23,6 +23,8 @@ public class characterItemManager : MonoBehaviour
 
     public GameObjectGameEvent onAnyThrow;
 
+    public GameObjectGameEvent onAnyUse;
+
     [SerializeField]
     Transform weaponPoint;
 
@@ -49,6 +51,13 @@ public class characterItemManager : MonoBehaviour
         if (Input.GetButtonDown("Interact"))
         {
             PickupCurrentShown();
+        }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (currentState == 0)
+                PickupCurrentShown();
+            else
+                UseCurrentItem();
         }
         if (Input.GetButtonDown("Fire2"))
         {
@@ -141,6 +150,13 @@ public class characterItemManager : MonoBehaviour
             currentState = 0;
         }    
     }
+
+
+    private void UseCurrentItem()
+    {
+        ;
+    }
+
     #endregion
 }
 

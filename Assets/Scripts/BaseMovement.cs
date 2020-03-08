@@ -20,9 +20,15 @@ public class BaseMovement : MonoBehaviour
 
     private void Update()
     {
-        inputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
-        if (inputVector.magnitude == 0) rb.velocity = Vector2.zero;
+        inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        if (inputVector.magnitude == 0) rb.velocity = Vector3.zero;
+
     }
+
+    private void LateUpdate()
+    {
+    }
+
 
     private void FixedUpdate()
     {
