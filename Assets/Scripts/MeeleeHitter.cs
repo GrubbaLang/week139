@@ -18,6 +18,8 @@ public class MeeleeHitter : MonoBehaviour
     /// </summary>
     public void Attack()
     {
+        L2t(onThisHit);
+        L2t(thisFunc);
         //remember world space so have to also use transform.rot.euler.z
         var result = Physics2D.OverlapBoxAll((Vector2)originPoint.position, attackBounds, transform.rotation.eulerAngles.z, enemies);
         if(result.Length > 0)
@@ -47,5 +49,15 @@ public class MeeleeHitter : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(originPoint.position, attackBounds);
+    }
+
+    void L2t(Action<GameObject, Mortal> l2that)
+    {
+        l2that += thisFunc;
+    }
+
+    private void thisFunc(GameObject arg1, Mortal arg2)
+    {
+        throw new NotImplementedException();
     }
 }
