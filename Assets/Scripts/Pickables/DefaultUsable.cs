@@ -31,24 +31,25 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
         var rot = transform.rotation.eulerAngles;
         rot.z = 0;
         transform.rotation = Quaternion.Euler(rot);
-
+        onThisDeEquip?.Invoke(gameObject);
     }
 
     public virtual void onPlayerUse()
     {
+        onThisUse?.Invoke(this.gameObject);
     }
 
-    public virtual void onThrow(Transform args1)
+    public virtual void onThrow(Transform firePoint)
     {
-        throwGO.transform.position = args1.position;
-        throwGO.transform.rotation = args1.rotation;
+        throwGO.transform.position = firePoint.position;
+        throwGO.transform.rotation = firePoint.rotation;
         gameObject.SetActive(false);
         throwGO.SetActive(true);
         var rb = throwGO.GetComponent<Rigidbody2D>();
         rb.angularVelocity = UnityEngine.Random.value * 10 % 2 == 0 ? onThrowVelTorgue.y : -onThrowVelTorgue.y;
-        rb.velocity = args1.right * onThrowVelTorgue.x;
+        rb.velocity = firePoint.right * onThrowVelTorgue.x;
         throwGO.GetComponent<throwableStateTracker>().goToThrowable();
-
+        onThisThrow?.Invoke(this.gameObject);
     }
 
     // Start is called before the first frame update
