@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeeleeHitter))]
 public class MeeleePickable : DefaultPickable
 {
     public Vector2 weaponPointOffset = Vector2.zero;
 
 
     Transform weapPoint;
-    MeeleeHitter hitter;
+    public MeeleeHitter hitter;
     private Vector3 originalLocal;
 
     private void Start()
     {
-        hitter = GetComponent<MeeleeHitter>();
     }
     public override GameObject onPickup(GameObject caller)
     {

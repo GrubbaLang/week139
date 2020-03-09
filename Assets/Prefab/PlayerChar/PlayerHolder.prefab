@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 872515373}
   - component: {fileID: 872515374}
+  - component: {fileID: 872515375}
   m_Layer: 0
-  m_Name: WeaponHolder
+  m_Name: weaponHolder [Deprecatred]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &872515373
 Transform:
   m_ObjectHideFlags: 0
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objToFollow: {fileID: 1997563985}
+--- !u!114 &872515375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872515372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8febed0cabaa7e047a954a80c3718232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotateAngle: 15
+  minRotateAngle: 5
 --- !u!1 &1948596868
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +131,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a4c75202dc584ab44a893a06ddef45aa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3270737, g: 0.35780823, b: 0.3962264, a: 0.44705883}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1997563985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997563984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.55, y: -0.61, z: 0}
+  m_LocalPosition: {x: 0.32, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1546038573988443920}
@@ -194,9 +209,8 @@ GameObject:
   - component: {fileID: 339718174}
   - component: {fileID: 1546038574323746575}
   - component: {fileID: 8044267807029998913}
-  - component: {fileID: 2012490845}
   - component: {fileID: 4891354116363821261}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,13 +241,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546038573988443927}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 200
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -285,21 +299,10 @@ MonoBehaviour:
   onAnyPickup: {fileID: 11400000, guid: 3bd18508783a3504f99077021c4c0687, type: 2}
   onNoHighLight: {fileID: 11400000, guid: 05b1015e8fb569640a27f4bdea9c9405, type: 2}
   onAnyThrow: {fileID: 11400000, guid: 623b71cec864bc74989bbf8b0d687d2b, type: 2}
-  weaponPoint: {fileID: 872515373}
+  onAnyUse: {fileID: 11400000, guid: c58fb2319ecdb45458802393b16195de, type: 2}
+  weaponPoint: {fileID: 1997563985}
   pickableLayerIndex: 15
   itemPoint: {fileID: 1997563985}
---- !u!114 &2012490845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546038573988443927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149b5f440db849646b365b2f0f35bd2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4891354116363821261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,8 +360,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3020334762819527196}
   - component: {fileID: 4336122696053343215}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 9
+  m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

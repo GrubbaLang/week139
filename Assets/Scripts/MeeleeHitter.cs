@@ -60,7 +60,7 @@ public class MeeleeHitter : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(originPoint.position, attackBounds);
+        Gizmos.DrawWireCube(originPoint.position, attackBounds);
     }
 
 }

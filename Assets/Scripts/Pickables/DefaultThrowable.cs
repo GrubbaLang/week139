@@ -28,7 +28,7 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
         back2pickCor = StartCoroutine(turnSelfIntoPickabble(timeToBackToPickable));
     }
 
-    void Start()
+    protected virtual void Awake()
     {
         stateTracker = GetComponent<throwableStateTracker>();
         this.enabled = false;

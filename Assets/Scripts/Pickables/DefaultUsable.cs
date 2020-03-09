@@ -17,7 +17,7 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     float leaveVel = 1;
     
     [SerializeField, Tooltip("X is throw speed, Y is rotation force")]
-    Vector2 onThrowVelTorgue = Vector2.one*Mathf.Deg2Rad;
+    Vector2 onThrowVelTorgue = Vector2.one*20;
 
     public virtual void onDeEquip(Transform oldParent)
     {
@@ -36,7 +36,6 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
 
     public virtual void onPlayerUse()
     {
-        throw new System.NotImplementedException();
     }
 
     public virtual void onThrow(Transform args1)

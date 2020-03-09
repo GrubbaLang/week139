@@ -196,7 +196,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.52, y: 0}
+  m_Offset: {x: 0.8, y: 0}
   serializedVersion: 2
   m_Radius: 3.68
 --- !u!61 &3418067806147305758
@@ -252,13 +252,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3418067806147305756}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b587100b7c2acb4698c809f51b741d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickableGO: {fileID: 3418067806147305756}
-  enemyLayerIndx: 10
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 1024
   timeToBackToPickable: 5
 --- !u!1 &3418067806379635741
 GameObject:
