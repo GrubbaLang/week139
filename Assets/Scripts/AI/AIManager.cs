@@ -21,6 +21,7 @@ public class AIManager : MonoBehaviour
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
     Seeker seeker;
+    public Vector2 _lastKnownPos;
 
     public AISettings _settings;
 
@@ -129,6 +130,7 @@ public class AIManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(ChasePlayer(target));
     }
+   
     IEnumerator PatrolWaypoints()
     {
         int currentWaypoint = 0;
@@ -152,8 +154,21 @@ public class AIManager : MonoBehaviour
         while (true)
         {
             SetDestination(target.position);
+            //Wait for end of path and then wait for 0.2 milliseconds:
             yield return new WaitUntil(() => reachedEndOfPath);
-            yield return new WaitForSeconds(1F);
+            yield return new WaitForSeconds(0.2F);
+        }
+    }
+
+
+
+    IEnumerator Search()
+    {
+        while (true)
+        {
+            SetDestination(RandomPosition());
+            yield return new WaitUntil(() => reachedEndOfPath);
+            yield return new WaitForSeconds(2F);
         }
     }
 }

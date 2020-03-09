@@ -21,11 +21,15 @@ public class AgressiveState : BaseAIState
         _ai.ChaseTarget(target);
     }
 
+    public override void OnStateExit()
+    {
+        _ai._lastKnownPos = target.position;
+    }
     public override Type Tick()
     {
-        if (Vector2.Distance(_ai.transform.position, target.position) > 5)
+        if (Vector2.Distance(_ai.transform.position, target.position) > _ai._settings._chaseDistance)
         {
-            return typeof(UnawareState);
+            return typeof(AwareState);
         }
         else
         {

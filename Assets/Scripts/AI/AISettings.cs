@@ -16,6 +16,10 @@ public class AISettings
 
     [Header("Patrolling Settings")]
     [SerializeField] public List<Transform> _patrolPoints;
+    [Tooltip("Amount of time that ai takes between waypoint patrols")]
+    [SerializeField] public float wayPointRestTimer = 2F;
+
+
 
 
 
