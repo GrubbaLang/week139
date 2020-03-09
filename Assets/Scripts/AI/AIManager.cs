@@ -160,8 +160,6 @@ public class AIManager : MonoBehaviour
         }
     }
 
-
-
     IEnumerator Search()
     {
         while (true)
