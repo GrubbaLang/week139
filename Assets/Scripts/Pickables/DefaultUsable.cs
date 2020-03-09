@@ -19,7 +19,7 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
     [SerializeField, Tooltip("X is throw speed, Y is rotation force")]
     Vector2 onThrowVelTorgue = Vector2.one*Mathf.Deg2Rad;
 
-    public void onDeEquip(Transform oldParent)
+    public virtual void onDeEquip(Transform oldParent)
     {
         transform.SetParent(oldParent, true);
         pickableGO.transform.position = this.transform.position;
@@ -34,12 +34,12 @@ public class DefaultUsable : MonoBehaviour, IBaseUsable
 
     }
 
-    public void onPlayerUse()
+    public virtual void onPlayerUse()
     {
         throw new System.NotImplementedException();
     }
 
-    public void onThrow(Transform args1)
+    public virtual void onThrow(Transform args1)
     {
         throwGO.transform.position = args1.position;
         throwGO.transform.rotation = args1.rotation;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 {
     public GameObject pickableGO;
-    public int enemyLayerIndx = 10;
+    public LayerMask enemyLayers;
     public float timeToBackToPickable;
 
     private Coroutine back2pickCor;
@@ -13,6 +13,7 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
     private bool firstCol = false;
     private throwableStateTracker stateTracker;
 
+    
     public void launchSelf(Vector2 velocity)
     {
         throw new System.NotImplementedException();
@@ -31,7 +32,6 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
     {
         stateTracker = GetComponent<throwableStateTracker>();
         this.enabled = false;
-        Debug.Log(string.Format("Throwable {0} started checking for enemies in layer {1}", gameObject.name ,LayerMask.LayerToName(enemyLayerIndx)));
     }
 
 
@@ -43,23 +43,27 @@ public class DefaultThrowable : MonoBehaviour, IBaseThrowable
 
     IEnumerator turnSelfIntoPickabble(float time)
     {
-        yield return new WaitForSeconds(time);
-        backToPick();
+        if (firstCol)
+        {
+            yield return new WaitForSeconds(time);
+            backToPick(); 
+        }
     }
 
     void OnCollisionEnter2D(Collision2D otherCol)
     {
         if (this.enabled)
         {
-            if (otherCol.gameObject.layer == enemyLayerIndx && firstCol)
+            if ((enemyLayers.value & 1 << otherCol.gameObject.layer) > 0  && firstCol)
             {
 
                 //Hitting enemy with throwable code here
             }
+
+            back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.1f));
             firstCol = false;
 
 
-            back2pickCor = StartCoroutine(turnSelfIntoPickabble(0.1f)); 
         }
     }
 }

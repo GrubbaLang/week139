@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &319482661 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1997563985, guid: 3cb7cca098cb875468822fd0feba1f30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1546038574323746572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &377290277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,6 +1984,14 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 872515372, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872515372, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
+      propertyPath: m_Name
+      value: weaponHolder [Deprecatred]
+      objectReference: {fileID: 0}
     - target: {fileID: 1948596870, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
       propertyPath: m_Color.r
       value: 0.3270737
@@ -2087,7 +2101,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visuals
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8044267807029998913, guid: 3cb7cca098cb875468822fd0feba1f30,
+        type: 3}
+      propertyPath: weaponPoint
+      value: 
+      objectReference: {fileID: 319482661}
+    m_RemovedComponents:
+    - {fileID: 2012490845, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3cb7cca098cb875468822fd0feba1f30, type: 3}
 --- !u!1001 &3418067804752167189
 PrefabInstance:
@@ -2155,6 +2175,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlaceHolderItemMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418067806147305754, guid: 48351350c1f2d104b888e52262083763,
+        type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3418067806147305754, guid: 48351350c1f2d104b888e52262083763,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48351350c1f2d104b888e52262083763, type: 3}
