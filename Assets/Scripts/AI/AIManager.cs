@@ -12,13 +12,11 @@ public class AIManager : MonoBehaviour
     public GameObject _Player;
     private AIStateManager _stateManager;
 
-    [SerializeField]List<Transform> _patrolPoints;
-
     [SerializeField] public Vector3 _target;
     public Rigidbody2D _rb;
 
     public Path path;
-    public float speed = 2;
+
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
@@ -43,6 +41,7 @@ public class AIManager : MonoBehaviour
             {typeof(UnawareState), new UnawareState(this)},
             {typeof(AwareState), new AwareState(this)},
             {typeof(PatrolState), new PatrolState(this)},
+            {typeof(AgressiveState), new AgressiveState(this)}
         };
         _stateManager.SetStates(_initialStates);
         
@@ -81,7 +80,7 @@ public class AIManager : MonoBehaviour
             var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint / nextWaypointDistance) : 1f;
             Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
 
-            Vector3 velocity = dir * speed * speedFactor;
+            Vector3 velocity = dir * _settings._movementSpeed * speedFactor;
             transform.position += velocity * Time.deltaTime;
         }
      
@@ -118,24 +117,29 @@ public class AIManager : MonoBehaviour
 
     public void Patrol()
     {
-        if (_patrolPoints.Count > 0)
+        if (_settings._patrolPoints.Count > 0)
         {
             StopAllCoroutines();
             StartCoroutine(PatrolWaypoints());
         }
     }
 
+    public void ChaseTarget(Transform target)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ChasePlayer(target));
+    }
     IEnumerator PatrolWaypoints()
     {
         int currentWaypoint = 0;
         while (true)
         {
-            if(currentWaypoint == _patrolPoints.Count)
+            if(currentWaypoint == _settings._patrolPoints.Count)
             {
                 currentWaypoint = 0;
             }
 
-            SetDestination(_patrolPoints[currentWaypoint].position);
+            SetDestination(_settings._patrolPoints[currentWaypoint].position);
             yield return new WaitUntil(() => reachedEndOfPath);
             yield return new WaitForSeconds(2F);
 
@@ -143,9 +147,14 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    IEnumerator LookForPlayer()
+    IEnumerator ChasePlayer(Transform target)
     {
-        return null;
+        while (true)
+        {
+            SetDestination(target.position);
+            yield return new WaitUntil(() => reachedEndOfPath);
+            yield return new WaitForSeconds(1F);
+        }
     }
 }
     

@@ -15,20 +15,23 @@ public class UnawareState : BaseAIState
 
     public override void OnStateEnter()
     {
-        // _ai.TraverseToRandomPosition();
         _ai.Patrol();
     }
+
     public override Type Tick()
     {
-       if(Vector2.Distance(_ai.transform.position, _ai._Player.transform.position) < 1F)
+        if(_ai.GetComponent<AIScanner>()._visibleTargets.Count > 0)
         {
-            return null;
+            return typeof(AgressiveState);
+        }else if(_ai.GetComponent<AIListener>()._audiblePosition.Count > 0)
+        {
+            return typeof(AwareState);
         }
         else
         {
-            
             return null;
         }
+
     }
 
   

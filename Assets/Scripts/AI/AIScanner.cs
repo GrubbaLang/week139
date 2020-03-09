@@ -117,11 +117,11 @@ public class AIScanner : MonoBehaviour
                 {
                     EdgeInfo edge = FindEdge(oldViewCast, newViewCast);
 
-                    if (edge.pointA != Vector2.zero)
+                    if (edge.pointA != Vector3.zero)
                     {
                         viewPoints.Add(edge.pointA);
                     }
-                    if (edge.pointB != Vector2.zero)
+                    if (edge.pointB != Vector3.zero)
                     {
                         viewPoints.Add(edge.pointB);
                     }
@@ -221,8 +221,8 @@ public class AIScanner : MonoBehaviour
 
     public struct EdgeInfo
     {
-        public Vector2 pointA;
-        public Vector2 pointB;
+        public Vector3 pointA;
+        public Vector3 pointB;
 
         public EdgeInfo(Vector2 _pointA, Vector2 _pointB)
         {
