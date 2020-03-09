@@ -16,6 +16,14 @@ public class MeeleeHitter : MonoBehaviour
     /// <summary>
     /// Use only if you've already set up attack point if not use attack(transform)
     /// </summary>
+    /// 
+    
+    public void ClearList()
+    {
+        
+        colList.Clear();
+    }
+    private List<Collider2D> colList = new List<Collider2D>();
     public void Attack()
     {
 
@@ -25,16 +33,21 @@ public class MeeleeHitter : MonoBehaviour
         {
             foreach (Collider2D n in result)
             {
-                var health = n.GetComponent<Mortal>();
-                if (health != null)
-                {
 
-                    health.Damage(damage);
-                    onThisHit(this.gameObject, health);
-                    onAnyEnemyHit.Raise(n.gameObject); 
+                if (!colList.Contains(n))
+                {
+                    var health = n.GetComponent<Mortal>();
+                    if (health != null)
+                    {
+
+                        health.Damage(damage);
+                        onThisHit(this.gameObject, health);
+                        onAnyEnemyHit.Raise(n.gameObject);
+                    } 
                 }
 
             }
+            colList.AddRange(result);
         }
     }
 
