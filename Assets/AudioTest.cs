@@ -27,7 +27,7 @@ public class AudioTest : MonoBehaviour
         for (int i = 0; i < shuffle; i++) { index[i] = -1; }
     }
 
-    void playShuffle()
+    public void playShuffle()
     {
         int soundPlaying;
         //The while loop cycles through the index checking for a previously played sound. If it finds one while loop starts again picking another random value. If not breaks from loop. 
