@@ -1737,6 +1737,7 @@ GameObject:
   - component: {fileID: 198134385}
   - component: {fileID: 198134384}
   - component: {fileID: 198134387}
+  - component: {fileID: 198134388}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1901,14 +1902,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setShuffle: 2
-  pitchMin: 0
-  pitchMax: 1.77
   shuffleSounds:
   - {fileID: 8300000, guid: 32cfea85298e577488c410baddf54cb2, type: 3}
   - {fileID: 8300000, guid: 6332c4e4d1b532c4c882bf16f42c7afb, type: 3}
   - {fileID: 8300000, guid: 7c28f92d44920334ab41d8eaa4a86802, type: 3}
   - {fileID: 8300000, guid: 0e8a8b6e62ddc6f43a434e11c5d42075, type: 3}
-  index: 
+  pitchMin: 0.71
+  pitchMax: 1.28
+--- !u!114 &198134388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198134383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d141314200c8254c9b54279c1679c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
+  shield: 0
+  maxShield: 0
 --- !u!1001 &459568201
 PrefabInstance:
   m_ObjectHideFlags: 0

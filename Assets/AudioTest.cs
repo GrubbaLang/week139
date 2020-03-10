@@ -5,16 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioTest : MonoBehaviour
 {
+    [Header("Shuffle")]
     [SerializeField, Tooltip("The shuffle value"), Range(0, 8)] private int setShuffle;
-    [SerializeField, Tooltip("Pitch min value"), Range(-4, 0)] private float pitchMin;
-    [SerializeField, Tooltip("Pitch max value"), Range(0, 4)] private float pitchMax;
     [SerializeField] private AudioClip[] shuffleSounds;
 
     public static int shuffle;
- 
+
     //Recently played sound index
-    public int[] index;
+    private int[] index;
     private int currentIndex = 0;
+
+    [Header("Set Random Pitch Range")]
+    [SerializeField, Tooltip("Pitch min value"), Range(-4, 1)] private float pitchMin;
+    [SerializeField, Tooltip("Pitch max value"), Range(1, 4)] private float pitchMax;
+
+   
 
     AudioSource audioSource;
 
