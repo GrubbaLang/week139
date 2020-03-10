@@ -1767,8 +1767,8 @@ MonoBehaviour:
   _response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 198134385}
-        m_MethodName: Play
+      - m_Target: {fileID: 198134387}
+        m_MethodName: playShuffle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1900,8 +1900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affe775202fd5284bbb843c18f8b407c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setShuffle: 0
-  shuffleSounds: []
+  setShuffle: 2
+  shuffleSounds:
+  - {fileID: 8300000, guid: 32cfea85298e577488c410baddf54cb2, type: 3}
+  - {fileID: 8300000, guid: 6332c4e4d1b532c4c882bf16f42c7afb, type: 3}
+  - {fileID: 8300000, guid: 7c28f92d44920334ab41d8eaa4a86802, type: 3}
+  - {fileID: 8300000, guid: 0e8a8b6e62ddc6f43a434e11c5d42075, type: 3}
   index: 
 --- !u!1001 &459568201
 PrefabInstance:

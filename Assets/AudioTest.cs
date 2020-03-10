@@ -6,6 +6,8 @@ using UnityEngine;
 public class AudioTest : MonoBehaviour
 {
     [SerializeField, Tooltip("The shuffle value"), Range(0, 8)] private int setShuffle;
+    [SerializeField, Tooltip("Pitch min value"), Range(-4, 0)] private float pitchMin;
+    [SerializeField, Tooltip("Pitch max value"), Range(0, 4)] private float pitchMax;
     [SerializeField] private AudioClip[] shuffleSounds;
 
     public static int shuffle;
